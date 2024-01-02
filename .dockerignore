@@ -1,0 +1,15 @@
+env
+.cache
+*.log
+.git
+
+.svelte-kit
+build
+node_modules
+npm-debug.log
+package-lock.json
+README.md
+
+static/up
+
+dev

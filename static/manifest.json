@@ -1,0 +1,138 @@
+{
+	"short_name": "SwapWordTechnique",
+	"name": "SwapWordTechnique",
+	"start_url": "/",
+	"icons": [
+		{
+			"src": "/icons/aic/16.png",
+			"type": "image/png",
+			"sizes": "16x16"
+		},
+		{
+			"src": "/icons/aic/20.png",
+			"type": "image/png",
+			"sizes": "20x20"
+		},
+		{
+			"src": "/icons/aic/29.png",
+			"type": "image/png",
+			"sizes": "29x29"
+		},
+		{
+			"src": "/icons/aic/32.png",
+			"type": "image/png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "/icons/aic/40.png",
+			"type": "image/png",
+			"sizes": "40x40"
+		},
+		{
+			"src": "/icons/aic/50.png",
+			"type": "image/png",
+			"sizes": "50x50"
+		},
+		{
+			"src": "/icons/aic/57.png",
+			"type": "image/png",
+			"sizes": "57x57"
+		},
+		{
+			"src": "/icons/aic/58.png",
+			"type": "image/png",
+			"sizes": "58x58"
+		},
+		{
+			"src": "/icons/aic/60.png",
+			"type": "image/png",
+			"sizes": "60x60"
+		},
+		{
+			"src": "/icons/aic/64.png",
+			"type": "image/png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "/icons/aic/72.png",
+			"type": "image/png",
+			"sizes": "72x72"
+		},
+		{
+			"src": "/icons/aic/76.png",
+			"type": "image/png",
+			"sizes": "76x76"
+		},
+		{
+			"src": "/icons/aic/80.png",
+			"type": "image/png",
+			"sizes": "80x80"
+		},
+		{
+			"src": "/icons/aic/87.png",
+			"type": "image/png",
+			"sizes": "87x87"
+		},
+		{
+			"src": "/icons/aic/100.png",
+			"type": "image/png",
+			"sizes": "100x100"
+		},
+		{
+			"src": "/icons/aic/114.png",
+			"type": "image/png",
+			"sizes": "114x114"
+		},
+		{
+			"src": "/icons/aic/120.png",
+			"type": "image/png",
+			"sizes": "120x120"
+		},
+		{
+			"src": "/icons/aic/128.png",
+			"type": "image/png",
+			"sizes": "128x128"
+		},
+		{
+			"src": "/icons/aic/144.png",
+			"type": "image/png",
+			"sizes": "144x144"
+		},
+		{
+			"src": "/icons/aic/152.png",
+			"type": "image/png",
+			"sizes": "152x152"
+		},
+		{
+			"src": "/icons/aic/167.png",
+			"type": "image/png",
+			"sizes": "167x167"
+		},
+		{
+			"src": "/icons/aic/180.png",
+			"type": "image/png",
+			"sizes": "180x180"
+		},
+		{
+			"src": "/icons/aic/256.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		},
+		{
+			"src": "/icons/aic/512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "/icons/aic/1024.png",
+			"type": "image/png",
+			"sizes": "1024x1024"
+		}
+	],
+	"background_color": "#FFFFFF",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#8bc8c8",
+	
+	"description": "SwapWordTechnique - это приложение для изучения языков с помощью карточек, делающее обучение увлекательным и легким. Оно предлагает карточки с словами и фразами, их переводом. Идеально для начинающих и продвинутых пользователей"
+}

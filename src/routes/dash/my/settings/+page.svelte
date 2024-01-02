@@ -61,7 +61,14 @@ email: {data.userData?.email}
 
 <div class="lags">
     {#each languagePairs as langPair}
-        <div class="pair{selectedLanguagePair?._id === langPair._id ? ' selected' : ''}" on:click={() => updateLang(langPair._id)} id={langPair._id}>
+        <div 
+            class="pair{selectedLanguagePair?._id === langPair._id ? ' selected' : ''}" 
+            on:click={() => updateLang(langPair._id)} 
+            on:keydown={e => e.key === 'Enter' && updateLang(langPair._id)} 
+            id={langPair._id} 
+            tabindex="0" 
+            role="button"
+        >
             <div class="line"><span>родной язык</span><span>{langPair.homeLang.emoji}</span><span>{langPair.homeLang.name}</span></div>
             <div class="line"><span>изучаемый язык</span><span>{langPair.goalLang.emoji}</span><span>{langPair.goalLang.name}</span></div>
         </div>

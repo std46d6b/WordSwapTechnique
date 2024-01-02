@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { redirect } from '@sveltejs/kit'
 import { decodedUserStore } from '$lib/store/user'
-import { update } from 'svelte/store'
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ cookies }) {
