@@ -3,23 +3,36 @@ import { JWT_TOKEN } from '$env/static/private'
 import { decodedUserStore } from '$lib/store/user'
 import { get } from 'svelte/store'
 
-
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ cookies }) {
-    let token = cookies.get('sst')
-    if (!token) { return { rfunc: 'LayoutServerLoad', auth: false, comment: 'no token' } }
-    try {
-        let decoded = jwt.verify(token.toString(), JWT_TOKEN)
-        
-        if (!decoded) { return { rfunc: 'LayoutServerLoad', auth: false, comment: 'no decoded' } }
+	let token = cookies.get('sst')
+	if (!token) {
+		return { rfunc: 'LayoutServerLoad', auth: false, comment: 'no token' }
+	}
+	try {
+		let decoded = jwt.verify(token.toString(), JWT_TOKEN)
 
-        decodedUserStore.update(currentState => { return { ...currentState, user: decoded } })
+		if (!decoded) {
+			return { rfunc: 'LayoutServerLoad', auth: false, comment: 'no decoded' }
+		}
 
-        return { rfunc: 'LayoutServerLoad', auth: true, comment: 'ok', userData: decoded, selectedLanguagePair: get(decodedUserStore).selectedLanguagePair }
-    } catch (error) {
-        // @ts-ignore
-        if (error.message === 'jwt expired') { return { rfunc: 'LayoutServerLoad', auth: false, comment: 'expired' } }
-        console.log(error)
-        return { rfunc: 'LayoutServerLoad', auth: false, comment: 'server side error' }
-    }
+		decodedUserStore.update((currentState) => {
+			return { ...currentState, user: decoded }
+		})
+
+		return {
+			rfunc: 'LayoutServerLoad',
+			auth: true,
+			comment: 'ok',
+			userData: decoded,
+			selectedLanguagePair: get(decodedUserStore).selectedLanguagePair
+		}
+	} catch (error) {
+		// @ts-ignore
+		if (error.message === 'jwt expired') {
+			return { rfunc: 'LayoutServerLoad', auth: false, comment: 'expired' }
+		}
+		console.log(error)
+		return { rfunc: 'LayoutServerLoad', auth: false, comment: 'server side error' }
+	}
 }
