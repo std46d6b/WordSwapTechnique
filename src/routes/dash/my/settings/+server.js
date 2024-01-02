@@ -10,8 +10,6 @@ export async function POST({ request, params }) {
     try {
         const { langPairId } = await request.json()
 
-        console.log('langPairId', langPairId)
-
         let decoded = get(decodedUserStore).user
         if (!decoded?._id) { return { func: 'Actions', success: false, comment: 'invalid decoded' } }
 
