@@ -15,7 +15,7 @@ export async function load({ cookies }) {
 
         decodedUserStore.update(currentState => { return { ...currentState, user: decoded } })
 
-        return { rfunc: 'LayoutServerLoad', auth: true, comment: 'ok', userData: decoded }
+        return { rfunc: 'LayoutServerLoad', auth: true, comment: 'ok', userData: decoded, selectedLanguagePair: get(decodedUserStore).selectedLanguagePair }
     } catch (error) {
         // @ts-ignore
         if (error.message === 'jwt expired') { return { rfunc: 'LayoutServerLoad', auth: false, comment: 'expired' } }

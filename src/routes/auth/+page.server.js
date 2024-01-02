@@ -69,6 +69,8 @@ export const actions = {
         let isPasswordValid = await bcrypt.compare(password.toString(), user.passwordHash)
         if (!isPasswordValid) { return { success: false, comment: 'wrong password' } }
 
+        decodedUserStore.update(currentState => { return { ...currentState, selectedLanguagePair: user.selectedLanguagePair?.toString()  } })
+
         let token = jwt.sign(
             { _id: user._id, admin: user.admin, email: user.email },
             JWT_TOKEN,

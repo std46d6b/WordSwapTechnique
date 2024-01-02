@@ -7,6 +7,7 @@ const userScheme = new mongoose.Schema(
     passwordHash:         { type: String, required: true },
     active:               { type: Boolean, default: true },
     admin:                { type: Boolean, default: false },
+    selectedLanguagePair: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: false }
   },
   {
     timestamps: true,
