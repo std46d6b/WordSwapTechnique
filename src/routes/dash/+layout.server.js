@@ -4,13 +4,14 @@ import { decodedUserStore } from '$lib/store/user'
 import { get } from 'svelte/store'
 import { redirect } from '@sveltejs/kit'
 import userModel from '$lib/db/models/users'
+import langPairsModel from '$lib/db/models/langPairs'
 import { ObjectId } from 'mongodb'
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ cookies }) {
 	let token = cookies.get('sst')
 	if (!token) {
-		return { rfunc: 'LayoutServerLoad', auth: false, comment: 'no token' }
+		throw redirect(302, '/auth')
 	}
 	try {
 		let decoded = jwt.verify(token.toString(), JWT_TOKEN)
@@ -28,11 +29,34 @@ export async function load({ cookies }) {
 			throw redirect(302, '/auth')
 		}
 
+		let langPair = await langPairsModel
+			.findOne({ active: true, owner: userId, _id: dbUser.selectedLanguagePair }, 'homeLang goalLang')
+			.populate({
+				path: 'homeLang',
+				select: 'name code emoji'
+			})
+			.populate({
+				path: 'goalLang',
+				select: 'name code emoji'
+			})
+
 		decodedUserStore.update((currentState) => {
 			return {
 				...currentState,
 				user: decoded,
-				selectedLanguagePair: dbUser.selectedLanguagePair?.toString()
+				selectedLanguagePair: {
+					_id: langPair?._id.toString(),
+					homeLang: {
+						name: langPair?.homeLang.name,
+						code: langPair?.homeLang.code,
+						emoji: langPair?.homeLang.emoji
+					},
+					goalLang: {
+						name: langPair?.goalLang.name,
+						code: langPair?.goalLang.code,
+						emoji: langPair?.goalLang.emoji
+					}
+				}
 			}
 		})
 

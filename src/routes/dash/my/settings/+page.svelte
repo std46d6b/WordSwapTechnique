@@ -1,13 +1,11 @@
 <script>
-	import { enhance } from '$app/forms'
-
 	/** @type {import('./$types').LayoutData} */
 	export let data
 
 	// console.log(data)
 
 	let languagePairs = data.langPairs
-	let selectedLanguagePairId = data.selectedLanguagePair
+	let selectedLanguagePairId = data.selectedLanguagePair._id
 
 	$: selectedLanguagePair = languagePairs.find((pair) => pair._id === selectedLanguagePairId)
 
@@ -55,14 +53,14 @@ email: {data.userData?.email}
 			role="button"
 		>
 			<div class="line">
-				<span>родной язык</span><span>{langPair.homeLang.emoji}</span><span
-					>{langPair.homeLang.name}</span
-				>
+				<span>родной язык</span>
+				<span>{langPair.homeLang.emoji}</span>
+				<span>{langPair.homeLang.name}</span>
 			</div>
 			<div class="line">
-				<span>изучаемый язык</span><span>{langPair.goalLang.emoji}</span><span
-					>{langPair.goalLang.name}</span
-				>
+				<span>изучаемый язык</span>
+				<span>{langPair.goalLang.emoji}</span>
+				<span>{langPair.goalLang.name}</span>
 			</div>
 		</div>
 	{/each}

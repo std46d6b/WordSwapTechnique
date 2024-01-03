@@ -84,7 +84,22 @@ export const actions = {
 		await dbUser.save()
 
 		decodedUserStore.update((currentState) => {
-			return { ...currentState, selectedLanguagePair: dbLangPairItem._id.toString() }
+			return {
+				...currentState,
+				selectedLanguagePair: {
+					_id: dbLangPairItem?._id.toString(),
+					homeLang: {
+						name: dbLangPairItem?.homeLang.name,
+						code: dbLangPairItem?.homeLang.code,
+						emoji: dbLangPairItem?.homeLang.emoji
+					},
+					goalLang: {
+						name: dbLangPairItem?.goalLang.name,
+						code: dbLangPairItem?.goalLang.code,
+						emoji: dbLangPairItem?.goalLang.emoji
+					}
+				}
+			}
 		})
 
 		throw redirect(302, '/dash/my/settings')

@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { JWT_TOKEN } from '$env/static/private'
 import { decodedUserStore } from '$lib/store/user'
-import { get } from 'svelte/store'
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ cookies }) {
@@ -24,8 +23,7 @@ export async function load({ cookies }) {
 			rfunc: 'LayoutServerLoad',
 			auth: true,
 			comment: 'ok',
-			userData: decoded,
-			selectedLanguagePair: get(decodedUserStore).selectedLanguagePair
+			userData: decoded
 		}
 	} catch (error) {
 		// @ts-ignore

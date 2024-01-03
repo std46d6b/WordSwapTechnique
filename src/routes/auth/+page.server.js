@@ -1,4 +1,6 @@
 import userModel from '$lib/db/models/users'
+import langPairsModel from '$lib/db/models/langPairs'
+import langsModel from '$lib/db/models/langs'
 import { JWT_TOKEN } from '$env/static/private'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -82,8 +84,34 @@ export const actions = {
 			return { success: false, comment: 'wrong password' }
 		}
 
+		let langPair = await langPairsModel
+			.findOne({ active: true, owner: user, _id: user.selectedLanguagePair }, 'homeLang goalLang')
+			.populate({
+				path: 'homeLang',
+				select: 'name code emoji'
+			})
+			.populate({
+				path: 'goalLang',
+				select: 'name code emoji'
+			})
+
 		decodedUserStore.update((currentState) => {
-			return { ...currentState, selectedLanguagePair: user.selectedLanguagePair?.toString() }
+			return {
+				...currentState,
+				selectedLanguagePair: {
+					_id: langPair?._id.toString(),
+					homeLang: {
+						name: langPair?.homeLang.name,
+						code: langPair?.homeLang.code,
+						emoji: langPair?.homeLang.emoji
+					},
+					goalLang: {
+						name: langPair?.goalLang.name,
+						code: langPair?.goalLang.code,
+						emoji: langPair?.goalLang.emoji
+					}
+				}
+			}
 		})
 
 		let token = jwt.sign({ _id: user._id, admin: user.admin, email: user.email }, JWT_TOKEN, {

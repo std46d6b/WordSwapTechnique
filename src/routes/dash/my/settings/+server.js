@@ -1,6 +1,7 @@
 import { decodedUserStore } from '$lib/store/user'
 import { ObjectId } from 'mongodb'
 import userModel from '$lib/db/models/users'
+import langPairsModel from '$lib/db/models/langPairs'
 import { get } from 'svelte/store'
 
 export async function POST({ request, params }) {
@@ -25,8 +26,34 @@ export async function POST({ request, params }) {
 			return { success: false, comment: 'autentification failed, try to log in again' }
 		}
 
+		let langPair = await langPairsModel
+			.findOne({ active: true, owner: dbUser, _id: langPairId }, 'homeLang goalLang')
+			.populate({
+				path: 'homeLang',
+				select: 'name code emoji'
+			})
+			.populate({
+				path: 'goalLang',
+				select: 'name code emoji'
+			})
+
 		decodedUserStore.update((currentState) => {
-			return { ...currentState, selectedLanguagePair: langPairId }
+			return {
+				...currentState,
+				selectedLanguagePair: {
+					_id: langPair?._id.toString(),
+					homeLang: {
+						name: langPair?.homeLang.name,
+						code: langPair?.homeLang.code,
+						emoji: langPair?.homeLang.emoji
+					},
+					goalLang: {
+						name: langPair?.goalLang.name,
+						code: langPair?.goalLang.code,
+						emoji: langPair?.goalLang.emoji
+					}
+				}
+			}
 		})
 
 		return new Response(JSON.stringify({ message: 'Language pair updated successfully' }), {

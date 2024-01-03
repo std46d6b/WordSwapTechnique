@@ -1,8 +1,6 @@
 <script>
 	/** @type {import('./$types').LayoutData} */
 	export let data
-
-	console.log(data.userData)
 </script>
 
 <a href="/">root</a>
