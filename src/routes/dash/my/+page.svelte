@@ -1,6 +1,8 @@
 <script>
 	/** @type {import('./$types').LayoutData} */
 	export let data
+
+	// console.log(data)
 </script>
 
 <a href="/">root</a>
@@ -10,7 +12,16 @@
 
 <div>/dash/my</div>
 
-email: {data.userData?.email}
-{#if data.userData?.admin}
-	admin: true
-{/if}
+<div class="info">
+	<span class="info">{data.selectedLanguagePair.goalLang.emoji}</span>
+	<span class="info">{data.selectedLanguagePair.homeLang.emoji}</span>
+</div>
+
+<div class="cards">
+	{#each data.wordPairs as wordPair}
+		<div class="card">
+			<span class="word">{wordPair.goalLangWord}</span>
+			<span class="word">{wordPair.homeLangWord}</span>
+		</div>
+	{/each}
+</div>

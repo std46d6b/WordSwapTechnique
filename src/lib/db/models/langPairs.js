@@ -16,5 +16,6 @@ const langPairsScheme = new mongoose.Schema(
 // owner id
 // homeLang id
 // goalLang id
+// active bool
 
 export default mongoose.model('langPairs', langPairsScheme)

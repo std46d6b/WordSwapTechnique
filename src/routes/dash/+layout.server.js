@@ -5,6 +5,7 @@ import { get } from 'svelte/store'
 import { redirect } from '@sveltejs/kit'
 import userModel from '$lib/db/models/users'
 import langPairsModel from '$lib/db/models/langPairs'
+import langsModel from '$lib/db/models/langs'
 import { ObjectId } from 'mongodb'
 
 /** @type {import('./$types').LayoutServerLoad} */
@@ -30,7 +31,10 @@ export async function load({ cookies }) {
 		}
 
 		let langPair = await langPairsModel
-			.findOne({ active: true, owner: userId, _id: dbUser.selectedLanguagePair }, 'homeLang goalLang')
+			.findOne(
+				{ active: true, owner: userId, _id: dbUser.selectedLanguagePair },
+				'homeLang goalLang'
+			)
 			.populate({
 				path: 'homeLang',
 				select: 'name code emoji'
@@ -70,9 +74,9 @@ export async function load({ cookies }) {
 	} catch (error) {
 		// @ts-ignore
 		if (error.message === 'jwt expired') {
-			return { rfunc: 'LayoutServerLoad', auth: false, comment: 'expired' }
+			throw redirect(302, '/auth')
 		}
 		console.log(error)
-		return { rfunc: 'LayoutServerLoad', auth: false, comment: 'server side error' }
+		throw redirect(302, '/auth')
 	}
 }

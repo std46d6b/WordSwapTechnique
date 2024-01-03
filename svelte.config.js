@@ -9,7 +9,7 @@ const config = {
 			precompress: false,
 			envPrefix: '',
 			polyfill: true,
-			handleError: (err) => {}
+			handleError: () => {}
 		}),
 		csrf: {
 			checkOrigin: false
