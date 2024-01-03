@@ -37,29 +37,35 @@ export async function POST({ request, params }) {
 				select: 'name code emoji'
 			})
 
-		decodedUserStore.update((currentState) => {
-			return {
-				...currentState,
-				selectedLanguagePair: {
-					_id: langPair?._id.toString(),
-					homeLang: {
-						name: langPair?.homeLang.name,
-						code: langPair?.homeLang.code,
-						emoji: langPair?.homeLang.emoji
-					},
-					goalLang: {
-						name: langPair?.goalLang.name,
-						code: langPair?.goalLang.code,
-						emoji: langPair?.goalLang.emoji
-					}
-				}
+		// console.log('langPair', langPair)
+		let selectedLanguagePair = {
+			_id: langPair?._id.toString(),
+			homeLang: {
+				name: langPair?.homeLang.name,
+				code: langPair?.homeLang.code,
+				emoji: langPair?.homeLang.emoji
+			},
+			goalLang: {
+				name: langPair?.goalLang.name,
+				code: langPair?.goalLang.code,
+				emoji: langPair?.goalLang.emoji
 			}
+		}
+
+		decodedUserStore.update((currentState) => {
+			return { ...currentState, selectedLanguagePair }
 		})
 
-		return new Response(JSON.stringify({ message: 'Language pair updated successfully' }), {
-			status: 200,
-			headers: { 'Content-Type': 'application/json' }
-		})
+		return new Response(
+			JSON.stringify({
+				comment: 'Language pair updated successfully',
+				selectedLanguagePair
+			}),
+			{
+				status: 200,
+				headers: { 'Content-Type': 'application/json' }
+			}
+		)
 	} catch (error) {
 		return new Response(JSON.stringify({ error: 'Server error' }), {
 			status: 500,

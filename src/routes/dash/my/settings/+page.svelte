@@ -11,7 +11,6 @@
 
 	let updateLang = async (langPairId) => {
 		try {
-			let oldId = data.selectedLanguagePair
 			const response = await fetch('/dash/my/settings', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -22,9 +21,11 @@
 				throw new Error('Server responded with an error!')
 			}
 
+			const responseData = await response.json()
+
 			selectedLanguagePairId = langPairId
 
-			console.log('Language pair updated successfully')
+			// console.log(responseData.comment)
 		} catch (error) {
 			console.error('Error updating language pair:', error)
 		}
@@ -33,6 +34,7 @@
 
 <a href="/">root</a>
 <a href="/dash">dash</a>
+<a href="/dash/my">my</a>
 <br />
 
 <div>/dash/my/settings</div>

@@ -24,5 +24,5 @@ export async function load({ cookies }) {
 		goalLangWord
 	}))
 
-	return { func: 'PageServerLoad', success: true, comment: 'ok', wordPairs: mappedWordPairs }
+	return { func: 'PageServerLoad', success: true, comment: 'ok', wordPairs: mappedWordPairs, selectedLanguagePair: decoded.selectedLanguagePair }
 }

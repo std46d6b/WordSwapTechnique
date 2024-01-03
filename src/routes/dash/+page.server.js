@@ -4,6 +4,16 @@ import { decodedUserStore } from '$lib/store/user'
 import { ObjectId } from 'mongodb'
 import { get } from 'svelte/store'
 
+/** @type {import('./$types').PageServerLoad} */
+export async function load({ cookies }) {
+	let decoded = get(decodedUserStore)
+	if (!decoded?.user?._id) {
+		return { func: 'PageServerLoad', success: false, comment: 'invalid decoded' }
+	}
+
+	return { func: 'PageServerLoad', success: true, comment: 'ok', selectedLanguagePair: decoded.selectedLanguagePair }
+}
+
 /** @type {import('./$types').Actions} */
 export const actions = {
 	addWordPair: async ({ cookies, request }) => {
@@ -33,11 +43,11 @@ export const actions = {
 		let wordPairDoc = new wordPairsModel({
 			langPair: dbUser.selectedLanguagePair,
 			homeLangWord: homeWord,
-			goalLangWord: goalWord,
+			goalLangWord: goalWord
 		})
 
 		await wordPairDoc.save()
 
-		return { success: true, comment: 'autentification failed, try to log in again' }
+		return { success: true, comment: 'ok' }
 	}
 }

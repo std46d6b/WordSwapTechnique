@@ -10,6 +10,7 @@
 
 <a href="/">root</a>
 <a href="/dash/my">my</a>
+<a href="/dash/my/settings">settings</a>
 
 <form method="POST" use:enhance>
 	{#if !form?.success && form}
@@ -18,7 +19,19 @@
 		<div class="info">Добавлено</div>
 	{/if}
 
-	<textarea name="home" id="home" cols="30" rows="10" placeholder={data.selectedLanguagePair?.homeLang.emoji}></textarea>
-	<textarea name="goal" id="goal" cols="30" rows="10" placeholder={data.selectedLanguagePair?.goalLang.emoji}></textarea>
+	<textarea
+		name="home"
+		id="home"
+		cols="30"
+		rows="10"
+		placeholder={data.selectedLanguagePair?.homeLang.emoji}
+	></textarea>
+	<textarea
+		name="goal"
+		id="goal"
+		cols="30"
+		rows="10"
+		placeholder={data.selectedLanguagePair?.goalLang.emoji}
+	></textarea>
 	<button formaction="?/addWordPair">add</button>
 </form>

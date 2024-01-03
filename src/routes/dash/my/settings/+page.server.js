@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import langPairsModel from '$lib/db/models/langPairs'
 import langsModel from '$lib/db/models/langs'
 import { get } from 'svelte/store'
@@ -35,5 +34,5 @@ export async function load() {
 		}
 	}))
 
-	return { type: 'PageServerLoad', success: true, langPairs: mappedLangPairs }
+	return { type: 'PageServerLoad', success: true, langPairs: mappedLangPairs, selectedLanguagePair: decoded.selectedLanguagePair }
 }
