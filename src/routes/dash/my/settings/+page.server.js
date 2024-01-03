@@ -34,5 +34,10 @@ export async function load() {
 		}
 	}))
 
-	return { type: 'PageServerLoad', success: true, langPairs: mappedLangPairs, selectedLanguagePair: decoded.selectedLanguagePair }
+	return {
+		type: 'PageServerLoad',
+		success: true,
+		langPairs: mappedLangPairs,
+		selectedLanguagePair: decoded.selectedLanguagePair
+	}
 }

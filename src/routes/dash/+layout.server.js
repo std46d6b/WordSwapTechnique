@@ -72,11 +72,10 @@ export async function load({ cookies }) {
 			selectedLanguagePair: get(decodedUserStore).selectedLanguagePair
 		}
 	} catch (error) {
-		// @ts-ignore
-		if (error.message === 'jwt expired') {
+		if (error?.message === 'jwt expired') {
 			throw redirect(302, '/auth')
 		}
-		console.log(error)
+		console.error(error)
 		throw redirect(302, '/auth')
 	}
 }

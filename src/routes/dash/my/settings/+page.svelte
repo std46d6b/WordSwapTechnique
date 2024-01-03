@@ -2,8 +2,6 @@
 	/** @type {import('./$types').LayoutData} */
 	export let data
 
-	// console.log(data)
-
 	let languagePairs = data.langPairs
 	let selectedLanguagePairId = data.selectedLanguagePair._id
 
@@ -24,8 +22,6 @@
 			const responseData = await response.json()
 
 			selectedLanguagePairId = langPairId
-
-			// console.log(responseData.comment)
 		} catch (error) {
 			console.error('Error updating language pair:', error)
 		}

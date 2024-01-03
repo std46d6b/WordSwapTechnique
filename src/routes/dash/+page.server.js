@@ -11,7 +11,12 @@ export async function load({ cookies }) {
 		return { func: 'PageServerLoad', success: false, comment: 'invalid decoded' }
 	}
 
-	return { func: 'PageServerLoad', success: true, comment: 'ok', selectedLanguagePair: decoded.selectedLanguagePair }
+	return {
+		func: 'PageServerLoad',
+		success: true,
+		comment: 'ok',
+		selectedLanguagePair: decoded.selectedLanguagePair
+	}
 }
 
 /** @type {import('./$types').Actions} */

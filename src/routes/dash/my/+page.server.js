@@ -16,13 +16,17 @@ export async function load({ cookies }) {
 		)
 	).reverse()
 
-	// console.log('wordPairs', wordPairs)
-
 	let mappedWordPairs = wordPairs.map(({ _id, homeLangWord, goalLangWord }) => ({
 		_id: _id.toString(),
 		homeLangWord,
 		goalLangWord
 	}))
 
-	return { func: 'PageServerLoad', success: true, comment: 'ok', wordPairs: mappedWordPairs, selectedLanguagePair: decoded.selectedLanguagePair }
+	return {
+		func: 'PageServerLoad',
+		success: true,
+		comment: 'ok',
+		wordPairs: mappedWordPairs,
+		selectedLanguagePair: decoded.selectedLanguagePair
+	}
 }

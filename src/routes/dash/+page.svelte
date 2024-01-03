@@ -11,6 +11,9 @@
 <a href="/">root</a>
 <a href="/dash/my">my</a>
 <a href="/dash/my/settings">settings</a>
+<br />
+
+<div>/dash</div>
 
 <form method="POST" use:enhance>
 	{#if !form?.success && form}

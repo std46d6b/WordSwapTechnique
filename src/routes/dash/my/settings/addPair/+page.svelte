@@ -7,6 +7,8 @@
 
 <a href="/">root</a>
 <a href="/dash">dash</a>
+<a href="/dash/my">my</a>
+<a href="/dash/my/settings">settings</a>
 <br />
 
 <div>/dash/my/settings/addPair</div>

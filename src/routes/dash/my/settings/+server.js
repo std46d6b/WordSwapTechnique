@@ -37,7 +37,6 @@ export async function POST({ request, params }) {
 				select: 'name code emoji'
 			})
 
-		// console.log('langPair', langPair)
 		let selectedLanguagePair = {
 			_id: langPair?._id.toString(),
 			homeLang: {

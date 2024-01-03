@@ -26,11 +26,10 @@ export async function load({ cookies }) {
 			userData: decoded
 		}
 	} catch (error) {
-		// @ts-ignore
-		if (error.message === 'jwt expired') {
+		if (error?.message === 'jwt expired') {
 			return { rfunc: 'LayoutServerLoad', auth: false, comment: 'expired' }
 		}
-		console.log(error)
+		console.error(error)
 		return { rfunc: 'LayoutServerLoad', auth: false, comment: 'server side error' }
 	}
 }
